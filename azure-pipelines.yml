@@ -1,9 +1,20 @@
 # Starter pipeline
+- task: Bash@3
+  inputs:
 # Start with a minimal pipeline that you can customize to build and deploy your code.
 # Add steps that build, run tests, deploy, and more:
 # https://aka.ms/yaml
-
+- task: Grunt@0
+  inputs:
+    gruntFile: 'gruntfile.js'
+    targets: 
+    gruntCli: 'node_modules/grunt-cli/bin/grunt'
 trigger:
+- task: ExtractFiles@1
+  inputs:
+    archiveFilePatterns: '**/*.zip'
+    cleanDestinationFolder: true
+    overwriteExistingFiles: false
 - master
 
 pool:
